@@ -1,40 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# WebSocket Chat Application
 
-## Getting Started
+이 프로젝트는 두 명의 유저가 WebSocket을 통해 실시간으로 채팅할 수 있도록 설계된 Next.js 애플리케이션입니다.
 
-First, run the development server:
+## 실행 방법
+
+1. **의존성 설치**:
+
+   ```bash
+   yarn install
+   ```
+
+2. **환경 변수 설정(선택)** : 기본적으로 WebSocket 서버 URL은 다음과 같이 설정되어 있습니다
+   ```bash
+   wss://websocket-chat-monorepo.onrender.com
+   ```
+
+만약 다른 WebSocket 서버를 사용하고 싶다면 프로젝트 루트에 .env.local 파일을 생성하고 다음 내용을 추가하세요:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+NEXT_PUBLIC_WEBSOCKET_URL=ws://your-custom-websocket-server.com
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. **개발 서버 실행**
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+   ```bash
+   yarn dev
+   ```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+4. **브라우저에서 접속**
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```bash
+   http://localhost:3000
+   ```
