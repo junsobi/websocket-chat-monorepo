@@ -6,5 +6,7 @@
   "workspaces": [
     "apps/*",
     "shared/*"
-  ]
+  ],
+  "repository": "https://github.com/junsobi/websocket-chat-monorepo.git",
+  "author": "junsobi <junsobi@gmail.com>"
 }
