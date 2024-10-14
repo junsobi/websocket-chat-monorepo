@@ -11,8 +11,7 @@ const Home: NextPageWithLayout = () => {
   // 로컬 테스트용 WebSocket 서버 URL 설정
   const serverUrl =
     // `ws://localhost:4000?roomId=${roomId}`; // 로컬 서버에서 테스트
-    process.env.NEXT_PUBLIC_WEBSOCKET_URL ||
-    "wss://websocket-chat-monorepo.onrender.com"; // 배포된 서버 URL
+    `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}?roomId=${roomId}`; // WebSocket URL with roomId
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-100 via-white to-blue-100 flex flex-col">
