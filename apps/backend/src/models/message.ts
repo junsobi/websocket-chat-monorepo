@@ -1,12 +1,15 @@
-import mongoose from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 
-// 메시지 스키마
-const messageSchema = new mongoose.Schema({
+export interface IMessage extends Document {
+  user: string;
+  text: string;
+  timestamp: Date;
+}
+
+const messageSchema = new Schema<IMessage>({
   user: { type: String, required: true },
   text: { type: String, required: true },
   timestamp: { type: Date, default: Date.now },
 });
 
-const Message = mongoose.model("Message", messageSchema);
-
-export default Message;
+export default mongoose.model<IMessage>("Message", messageSchema);
