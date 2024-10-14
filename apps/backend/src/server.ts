@@ -3,7 +3,7 @@ import { WebSocketServer } from "ws";
 import http from "http";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import router from "./routes/messages";
+import router from "./routes/router";
 import { websocketHandler } from "./websocket/websocketHandler";
 import cors from "cors";
 
