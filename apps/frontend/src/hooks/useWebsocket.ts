@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 
 export function useWebSocket(serverUrl: string, user: string) {
-  const [messages, setMessages] = useState<string[]>([]);
+  const [messages, setMessages] = useState<
+    { user: string; text: string; timestamp: string }[]
+  >([]);
   const [logs, setLogs] = useState<string[]>([]);
   const socket = useRef<WebSocket | null>(null);
 
@@ -15,8 +17,15 @@ export function useWebSocket(serverUrl: string, user: string) {
     };
 
     socket.current.onmessage = (event) => {
-      setMessages((prev) => [...prev, event.data]); // 수신된 메시지 추가
-      setLogs((prev) => [...prev, `${user} 메시지 수신: ${event.data}`]);
+      const parsedData = JSON.parse(event.data);
+
+      if (parsedData.type === "history") {
+        // 이전 메시지 불러오기
+        setMessages(parsedData.data);
+      } else if (parsedData.type === "message") {
+        // 실시간 메시지 추가
+        setMessages((prev) => [...prev, parsedData.data]);
+      }
     };
 
     socket.current.onclose = () => {
@@ -24,16 +33,19 @@ export function useWebSocket(serverUrl: string, user: string) {
       setLogs((prev) => [...prev, message]);
     };
 
+    socket.current.onerror = (error) => {
+      console.error("WebSocket 오류:", error);
+    };
+
     return () => {
       socket.current?.close();
     };
   }, [serverUrl, user]);
 
-  const sendMessage = (message: string) => {
-    if (socket.current && message.trim()) {
-      const formattedMessage = `${user}: ${message}`;
-      socket.current.send(formattedMessage); // 서버에 메시지 전송
-      setLogs((prev) => [...prev, `${user} 메시지 전송: ${formattedMessage}`]);
+  const sendMessage = (text: string) => {
+    if (socket.current && text.trim()) {
+      const message = { user, text };
+      socket.current.send(JSON.stringify(message));
     }
   };
 
