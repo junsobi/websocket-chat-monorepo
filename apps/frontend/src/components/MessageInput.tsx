@@ -24,7 +24,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
         onKeyDown={handleKeyDown}
         onCompositionStart={() => (isComposing.current = true)}
         onCompositionEnd={() => (isComposing.current = false)}
-        className="flex-grow border rounded-l px-4 py-2 focus:outline-none"
+        className=" border rounded-l px-4 py-2 focus:outline-none"
         placeholder="메시지를 입력하세요..."
       />
       <button

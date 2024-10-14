@@ -10,12 +10,14 @@ export interface Message {
 
 /** ChatMessages 컴포넌트의 props 타입 */
 export interface ChatMessagesProps {
+  user: User;
   messages: Message[];
   messageEndRef: React.RefObject<HTMLDivElement>;
 }
 
 /** LogViewer 컴포넌트의 props 타입 */
 export interface LogViewerProps {
+  user: User;
   logs: string[];
 }
 
@@ -30,4 +32,10 @@ export interface MessageInputProps {
 export interface ChatBoxProps {
   user: User;
   serverUrl: string;
+  roomId: string;
+}
+
+export interface WebSocketMessage {
+  type: "message";
+  data: Message;
 }

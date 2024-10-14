@@ -2,11 +2,15 @@ import React from "react";
 import { ChatMessagesProps } from "@/types/chat";
 
 const ChatMessages: React.FC<ChatMessagesProps> = ({
+  user,
   messages,
   messageEndRef,
 }) => {
   return (
-    <div className="border p-4 h-48 overflow-y-auto mb-4 bg-gray-50 rounded">
+    <div
+      id={`${user}-chat-messages`}
+      className="border p-4 h-48 overflow-y-auto mb-4 bg-gray-50 rounded"
+    >
       <h3 className="font-bold text-lg mb-2">채팅 메시지</h3>
       {messages.map((msg, index) => (
         <div key={index} className="text-sm mb-1">
