@@ -5,7 +5,7 @@ export const websocketHandler = (wss: WebSocketServer) => {
   wss.on("connection", (ws: WebSocket, req) => {
     const roomId = new URL(
       req.url || "",
-      `http://${req.headers.host}`
+      `https://${req.headers.host}`
     ).searchParams.get("roomId");
 
     ws.on("message", async (data) => {
